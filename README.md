@@ -4,6 +4,6 @@ Breif description of each role:
 
 Tomcat - Installs a version of Tomcat that is specified in common.yml and creates a symlink that is specified in common.yml
 
-Java - Install a version of Java that is specified in common.yml. It is using openJDK, which should be 
+Java - Install a version of Java that is specified in common.yml. It is using openJDK for now.
 
 Vagrantfile is using CentOS 6.8
