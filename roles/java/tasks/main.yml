@@ -1,0 +1,6 @@
+---
+# Installs Java through yum on RHEL/CentOS
+# Alex Knight
+
+- name: Install Java (version specified by variable)
+  yum: name=java-1.{{ java_major_version }}.0-openjdk state=present

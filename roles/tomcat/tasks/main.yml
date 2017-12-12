@@ -1,0 +1,18 @@
+---
+# This Ansible role will download Tomcat from Apache and install on a RHEL/CENTOS system
+# Alex Knight
+
+- name: Add a tomcat group
+  group: name=tomcat
+
+- name: Add a tomcat user
+  user: name=tomcat group=tomcat home=/home/tomcat
+
+- name: Download Tomcat package
+  get_url: url={{ tomcat_url }}/tomcat-{{ tomcat_major_version }}/v{{ tomcat_full_version }}/src/apache-tomcat-{{ tomcat_full_version }}-src.tar.gz dest=/opt/
+
+- name: Extract Tomcat package
+  unarchive: src=/opt/apache-tomcat-{{ tomcat_full_version }}-src.tar.gz dest=/opt/ owner=tomcat group=tomcat  remote_src=True
+
+- name: Create a symlink dir for Tomcat
+  file: src=/opt/apache-tomcat-{{ tomcat_full_version }}-src path={{ tomcat_symlink }} owner=tomcat group=tomcat state=link
