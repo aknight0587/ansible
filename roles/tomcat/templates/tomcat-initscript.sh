@@ -19,7 +19,7 @@ sh $CATALINA_HOME/bin/shutdown.sh
 sh $CATALINA_HOME/bin/startup.sh
 ;;
 status)
-  pid=$(caalina_pid)
+  pid=$(catalina_pid)
   if [ -n "$pid" ]
   then
     echo "Tomcat is running with pid: $pid"
