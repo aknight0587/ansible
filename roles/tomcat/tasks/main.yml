@@ -14,23 +14,23 @@
 - name: Extract Tomcat package
   unarchive: src=/opt/apache-tomcat-{{ tomcat_full_version }}.tar.gz dest=/opt/ remote_src=True
 
-- name: Create a symlink dir for Tomcat
-  file: src=/opt/apache-tomcat-{{ tomcat_full_version }} dest={{ tomcat_symlink }} state=link
-
 - name: Create log directory for Tomcat
-  file: path={{ tomcat_symlink }}/logs owner=tomcat group=tomcat state=directory
-
-- name: Make catalina.sh script executable
-  file: path=/opt/tomcat/bin/catalina.sh mode=0775
-
-- name: Install Tomcat init script
-  template: src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755
-
-- name: Install Tomcat setenv script
-  copy: src=setenv.sh dest=/opt/tomcat/bin/setenv.sh  mode=0775
+  file: path=/opt/apache-tomcat-{{ tomcat_full_version }}/logs owner=tomcat group=tomcat state=directory
 
 - name: Change ownership of dir
   file: path=/opt/apache-tomcat-{{ tomcat_full_version }}  owner=tomcat group=tomcat recurse=yes
+
+- name: Install Tomcat setenv script
+  copy: src=setenv.sh dest=/opt/apache-tomcat-{{ tomcat_full_version }}/bin/setenv.sh  mode=0775
+
+- name: Create a symlink dir for Tomcat
+  file: src=/opt/apache-tomcat-{{ tomcat_full_version }} dest={{ tomcat_symlink }} state=link
+
+- name: Make catalina.sh script executable
+  file: path={{ tomcat_symlink }}/bin/catalina.sh mode=0775
+
+- name: Install Tomcat init script
+  template: src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755
 
 - name: Clean up
   file: path=/opt/apache-tomcat-{{ tomcat_full_version }}-src.tar.gz state=absent
