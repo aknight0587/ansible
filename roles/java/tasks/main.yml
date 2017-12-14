@@ -1,6 +1,11 @@
 ---
-# Installs Java through yum on RHEL/CentOS
+# Installs Java through yum on RHEL/CentOS/Ubuntu/Debian
 # Alex Knight
 
 - name: Install Java (version specified by variable)
   yum: name=java-1.{{ java_major_version }}.0-openjdk state=present
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: Install Java (version specified by variable)
+  apt: name=openjdk-{{ java_major_version }}-jre state=present
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
