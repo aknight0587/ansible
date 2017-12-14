@@ -1,9 +1,12 @@
-A collection of roles and playbooks that I've written for Ansible which also includes a Vagrantfile that can be used to test functionality of the code in Vagrant. Roles will be split out into individual repos in the future.
+Installs Tomcat and Java on RHEL/CentOS/Ubuntu/Debian systems using Ansible. Tomcat is downloaded from Apache and the user specifies the version they want. OpenJDK Java is installed either through yum or apt and the use specifies the version they want. A Vagrantfile is provided to for testing and uses the vagrant.yml playbook and is running Centos 6.8.
 
-Breif description of each role:
+This is code that I've writted in my personal time and is being improved upon when I have time to address and as my skills grow. 
 
-Tomcat - Installs a version of Tomcat that is specified in common.yml and creates a symlink that is specified in common.yml
+Future improvements - 
+Create variable for the port that Tomcat runs on
+Create variable for heap settings for Tomcat
+Create variable for log settings for Tomcat
+Create multiple instances of Tomcat running on different ports
+Incoporate support for load balanced Tomcat instances
 
-Java - Install a version of Java that is specified in common.yml. It is using openJDK for now.
-
-Vagrantfile is using CentOS 6.8
+Alex Knight - 2017
