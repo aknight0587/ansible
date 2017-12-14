@@ -1,4 +1,4 @@
-A collection of roles and playbooks that I've written for Ansible which also includes a Vagrantfile that can be used to test functionality of the code in Vagrant. Right now this code is written to work on RedHat/CentOS systems. Adding support for Ubuntu/Debian is on my to-do list.
+A collection of roles and playbooks that I've written for Ansible which also includes a Vagrantfile that can be used to test functionality of the code in Vagrant. Roles will be split out into individual repos in the future.
 
 Breif description of each role:
 
