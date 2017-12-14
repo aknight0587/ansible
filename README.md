@@ -1,6 +1,9 @@
-Installs Tomcat and Java on RHEL/CentOS/Ubuntu/Debian systems using Ansible. Tomcat is downloaded from Apache and the user specifies the version they want. OpenJDK Java is installed either through yum or apt and the user specifies the version they want. A Vagrantfile is provided to for testing and uses the vagrant.yml playbook and is running Centos 6.8.
+Installs Tomcat and Java on RHEL/CentOS/Ubuntu/Debian systems using Ansible
 
-This is code that I've written in my personal time and is being improved upon when I have time to address and as my skills grow. 
+Tomcat - Downloaded from Apache's website, version is specified by user in vars
+Java - OpenJDK installed via yum or apt, version is specified by user in vars
+
+A Vagrantfile is provided to for testing and uses the vagrant.yml playbook and is running Centos 6.8
 
 Future improvements:  
 - Create variable for the port that Tomcat runs on
@@ -9,4 +12,5 @@ Future improvements:
 - Create multiple instances of Tomcat running on different ports
 - Incoporate support for load balanced Tomcat instances
 
+This code will be worked upon as I find time and will be improved over time.
 Alex Knight - 2017
