@@ -16,12 +16,12 @@
 
 - name: Create log directory for Tomcat
   file: path=/opt/apache-tomcat-{{ tomcat_full_version }}/logs owner=tomcat group=tomcat state=directory
+  
+- name: Install Tomcat setenv script
+  copy: src=setenv.sh dest=/opt/apache-tomcat-{{ tomcat_full_version }}/bin/setenv.sh  mode=0775
 
 - name: Change ownership of dir
   file: path=/opt/apache-tomcat-{{ tomcat_full_version }}  owner=tomcat group=tomcat recurse=yes
-
-- name: Install Tomcat setenv script
-  copy: src=setenv.sh dest=/opt/apache-tomcat-{{ tomcat_full_version }}/bin/setenv.sh  mode=0775
 
 - name: Create a symlink dir for Tomcat
   file: src=/opt/apache-tomcat-{{ tomcat_full_version }} dest={{ tomcat_symlink }} state=link
