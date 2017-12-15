@@ -7,5 +7,5 @@
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 
 - name: Install Java (version specified by variable)
-  apt: name=openjdk-{{ java_major_version }}-jre state=present
+  apt: name=openjdk-{{ java_major_version }}-jdk state=present
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'

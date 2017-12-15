@@ -16,7 +16,7 @@
 
 - name: Create log directory for Tomcat
   file: path=/opt/apache-tomcat-{{ tomcat_full_version }}/logs owner=tomcat group=tomcat state=directory
-  
+
 - name: Install Tomcat setenv script
   copy: src=setenv.sh dest=/opt/apache-tomcat-{{ tomcat_full_version }}/bin/setenv.sh  mode=0775
 
@@ -31,6 +31,9 @@
 
 - name: Install Tomcat init script
   template: src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755
+
+- name: Start tomcat
+  command: /etc/init.d/tomcat start
 
 - name: Clean up
   file: path=/opt/apache-tomcat-{{ tomcat_full_version }}-src.tar.gz state=absent
