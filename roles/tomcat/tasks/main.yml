@@ -1,6 +1,14 @@
 ---
-# This Ansible role will download Tomcat from Apache and install on RHEL/CentOS/Ubuntu/Debian
+# This Ansible role will download Tomcat from Apache and install on RHEL/CentOS/Ubuntu/Debian and also installs OpenJDK Java
 # Alex Knight
+
+- name: Install Java (version specified by variable)
+  yum: name=java-1.{{ java_major_version }}.0-openjdk state=present
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: Install Java (version specified by variable)
+  apt: name=openjdk-{{ java_major_version }}-jdk state=present
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: Add a tomcat group
   group: name=tomcat
@@ -20,14 +28,14 @@
 - name: Install Tomcat setenv script
   copy: src=setenv.sh dest=/opt/apache-tomcat-{{ tomcat_full_version }}/bin/setenv.sh  mode=0775
 
+- name: Make catalina.sh script executable
+  file: path=/opt/apache-tomcat-{{ tomcat_full_version }}/bin/catalina.sh mode=0775
+
 - name: Change ownership of dir
   file: path=/opt/apache-tomcat-{{ tomcat_full_version }}  owner=tomcat group=tomcat recurse=yes
 
 - name: Create a symlink dir for Tomcat
   file: src=/opt/apache-tomcat-{{ tomcat_full_version }} dest={{ tomcat_symlink }} state=link
-
-- name: Make catalina.sh script executable
-  file: path={{ tomcat_symlink }}/bin/catalina.sh mode=0775
 
 - name: Install Tomcat init script
   template: src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755
