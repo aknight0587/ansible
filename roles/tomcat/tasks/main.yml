@@ -26,7 +26,7 @@
   file: path=/opt/apache-tomcat-{{ tomcat_full_version }}/logs owner=tomcat group=tomcat state=directory
 
 - name: Install Tomcat setenv script
-  copy: src=setenv.sh dest=/opt/apache-tomcat-{{ tomcat_full_version }}/bin/setenv.sh  mode=0775
+  template: src=setenv.sh dest=/opt/apache-tomcat-{{ tomcat_full_version }}/bin/setenv.sh  mode=0775
 
 - name: Make catalina.sh script executable
   file: path=/opt/apache-tomcat-{{ tomcat_full_version }}/bin/catalina.sh mode=0775
