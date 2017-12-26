@@ -31,6 +31,9 @@
 - name: Make catalina.sh script executable
   file: path=/opt/apache-tomcat-{{ tomcat_full_version }}/bin/catalina.sh mode=0775
 
+- name: Use template tomcat server config
+  template: src=server.xml dest=/opt/apache-tomcat-{{ tomcat_full_version }}/conf/server.xml
+
 - name: Change ownership of dir
   file: path=/opt/apache-tomcat-{{ tomcat_full_version }}  owner=tomcat group=tomcat recurse=yes
 

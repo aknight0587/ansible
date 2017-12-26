@@ -6,10 +6,8 @@ Installs Tomcat and Java on RHEL/CentOS/Ubuntu/Debian systems using Ansible
 Vagrantfiles are  provided for testing and uses the vagrant.yml playbook and are running Centos 6.8 and Ubuntu 16 LTS
 
 Future improvements:  
-- Create variable for the port that Tomcat runs on
-- Create variable for heap settings for Tomcat
-- Create variable for log settings for Tomcat
-- Create multiple instances of Tomcat running on different ports
+- Create support variable for log settings for Tomcat
+- Create support for multiple instances of Tomcat running on different ports
 - Incoporate support for load balanced Tomcat instances
 
 This code will be worked upon as I find time and will be improved over time.
