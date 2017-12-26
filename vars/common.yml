@@ -1,7 +1,7 @@
 java_major_version: 8
 tomcat_url: https://archive.apache.org/dist/tomcat
-tomcat_major_version: 8
-tomcat_full_version: 8.5.9
+tomcat_major_version: 7
+tomcat_full_version: 7.0.23
 tomcat_symlink: /opt/tomcat
 tomcat_min_heap: 512m
 tomcat_max_heap: 512m
