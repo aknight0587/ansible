@@ -1,4 +1,4 @@
-# This playbook installs Tomcat and Java and is being used to run locally on ec2 instances upon creation in AWS
+# This playbook installs Tomcat and Java and is being used to run locally on a Docker container
 
 - hosts: localhost
   remote_user: root
