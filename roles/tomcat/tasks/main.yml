@@ -11,40 +11,40 @@
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: Add a tomcat group
-  group: name=tomcat
+  group: name={{ tomcat_group }}
 
 - name: Add a tomcat user
-  user: name=tomcat group=tomcat home=/home/tomcat
+  user: name={{ tomcat_user }} group={{ tomcat_group }} home={{ tomcat_user_home }}
 
 - name: Download Tomcat package
-  get_url: url={{ tomcat_url }}/tomcat-{{ tomcat_major_version }}/v{{ tomcat_full_version }}/bin/apache-tomcat-{{ tomcat_full_version }}.tar.gz dest=/opt/
+  get_url: url={{ tomcat_url }}/tomcat-{{ tomcat_major_version }}/v{{ tomcat_full_version }}/bin/apache-tomcat-{{ tomcat_full_version }}.tar.gz dest={{ tomcat_dest }}
 
 - name: Extract Tomcat package
-  unarchive: src=/opt/apache-tomcat-{{ tomcat_full_version }}.tar.gz dest=/opt/ remote_src=True
+  unarchive: src={{ tomcat_dest }}/apache-tomcat-{{ tomcat_full_version }}.tar.gz dest={{ tomcat_dest }} remote_src=True
 
 - name: Create log directory for Tomcat
-  file: path=/opt/apache-tomcat-{{ tomcat_full_version }}/logs owner=tomcat group=tomcat state=directory
+  file: path={{ tomcat_dest }}/apache-tomcat-{{ tomcat_full_version }}/logs owner={{ tomcat_user }} group={{ tomcat_group }} state=directory
 
 - name: Install Tomcat setenv script
-  template: src=setenv.sh dest=/opt/apache-tomcat-{{ tomcat_full_version }}/bin/setenv.sh  mode=0775
+  template: src=setenv.sh dest={{ tomcat_dest }}/apache-tomcat-{{ tomcat_full_version }}/bin/setenv.sh  mode={{ tomcat_setenv_mode }}
 
 - name: Make catalina.sh script executable
-  file: path=/opt/apache-tomcat-{{ tomcat_full_version }}/bin/catalina.sh mode=0775
+  file: path={{ tomcat_dest }}/apache-tomcat-{{ tomcat_full_version }}/bin/catalina.sh mode={{ tomcat_catalina_script_mode }}
 
 - name: Use template tomcat server config
-  template: src=server.xml dest=/opt/apache-tomcat-{{ tomcat_full_version }}/conf/server.xml
+  template: src=server.xml dest={{ tomcat_dest }}/apache-tomcat-{{ tomcat_full_version }}/conf/server.xml
 
 - name: Change ownership of dir
-  file: path=/opt/apache-tomcat-{{ tomcat_full_version }}  owner=tomcat group=tomcat recurse=yes
+  file: path={{ tomcat_dest }}/apache-tomcat-{{ tomcat_full_version }}  owner=tomcat group=tomcat recurse=yes
 
 - name: Create a symlink dir for Tomcat
-  file: src=/opt/apache-tomcat-{{ tomcat_full_version }} dest={{ tomcat_symlink }} state=link
+  file: src={{ tomcat_dest }}/apache-tomcat-{{ tomcat_full_version }} dest={{ tomcat_symlink }} state=link
 
 - name: Install Tomcat init script
-  template: src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755
+  template: src=tomcat-initscript.sh dest={{ tomcat_init_script_dest }} mode={{ tomcat_init_script_mode }}
 
 - name: Start tomcat
-  command: /etc/init.d/tomcat start
+  command: "{{ tomcat_init_script_dest }} start"
 
 - name: Clean up
-  file: path=/opt/apache-tomcat-{{ tomcat_full_version }}-src.tar.gz state=absent
+  file: path={{ tomcat_dest }}/apache-tomcat-{{ tomcat_full_version }}-src.tar.gz state=absent
