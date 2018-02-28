@@ -1,7 +1,7 @@
 Installs Tomcat and Java on RHEL/CentOS/Ubuntu/Debian systems using Ansible
 
-Tomcat - Downloaded from Apache, version is specified by user (tested 7.0.82, 8.5.9, 8.5.28)
-Java - OpenJDK installed via yum or apt, version is specified by user
+- Tomcat - Downloaded from Apache, version is specified by user (tested 7.0.82, 8.5.9, 8.5.28)
+- Java - OpenJDK installed via yum or apt, version is specified by user
 
 Vagrantfile provided for testing roles.
 
