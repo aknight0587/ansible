@@ -1,11 +1,14 @@
 Installs Tomcat and Java on RHEL/CentOS/Ubuntu/Debian systems using Ansible
 
-- Tomcat - Downloaded from Apache's website, version is specified by user (tested 7.0.82, 8.5.9)
-- Java - OpenJDK installed via yum or apt, version is specified by user
+Tomcat - Downloaded from Apache, version is specified by user (tested 7.0.82, 8.5.9, 8.5.28)
+Java - OpenJDK installed via yum or apt, version is specified by user
 
-Vagrantfiles are provided for testing and uses the tomcat.yml playbook, CentOS and Ubuntu provided  
+Vagrantfile provided for testing roles.
 
-Dockerfile uses Ubuntu latest and runs the docker.yml playbook on the container
+            vagrant up ubuntu
+            vagrant up centos
+
+Dockerfile provided tests the playbook against a Ubuntu container. 
 
 Future improvements:  
 - Implement support for selecting log level (DEBUG, WARN, ERROR, etc.)
