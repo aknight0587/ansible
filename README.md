@@ -9,6 +9,7 @@ Vagrantfile provided for testing roles.
             vagrant up centos
 
 Dockerfile provided tests the playbook against a Ubuntu container. 
+            docker build .
 
 Future improvements:  
 - Implement support for selecting log level (DEBUG, WARN, ERROR, etc.)
