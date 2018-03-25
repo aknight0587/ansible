@@ -45,6 +45,9 @@
 
 - name: Start tomcat
   command: "{{ tomcat_init_script_dest }} start"
+  become: true
+  become_method: su
+  become_user: "{{ tomcat_user }}"
 
 - name: Clean up
   file: path={{ tomcat_dest }}/apache-tomcat-{{ tomcat_full_version }}-src.tar.gz state=absent
